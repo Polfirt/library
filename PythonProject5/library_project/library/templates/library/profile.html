@@ -5,7 +5,7 @@
 {% block content %}
 <div class="row">
     <div class="col">
-        <h2 class="mb-4">My Books</h2>
+        <h2 class="mb-4">Моя книга</h2>
         {% if books %}
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for book in books %}
@@ -18,9 +18,9 @@
                             </div>
                             <div class="card-footer bg-white">
                                 <div class="d-grid gap-2 d-md-block">
-                                    <a href="{% url 'book_detail' book.pk %}" class="btn btn-sm btn-outline-primary">View</a>
-                                    <a href="{% url 'edit_book' book.pk %}" class="btn btn-sm btn-outline-success">Edit</a>
-                                    <a href="{% url 'delete_book' book.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                                    <a href="{% url 'book_detail' book.pk %}" class="btn btn-sm btn-outline-primary">Позырить</a>
+                                    <a href="{% url 'edit_book' book.pk %}" class="btn btn-sm btn-outline-success">Отредачить</a>
+                                    <a href="{% url 'delete_book' book.pk %}" class="btn btn-sm btn-outline-danger">Удалить</a>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
             </div>
         {% else %}
             <div class="alert alert-info">
-                You haven't added any books yet. <a href="{% url 'add_book' %}" class="alert-link">Add your first book</a>
+                Ты еще ниче не сделал. <a href="{% url 'add_book' %}" class="alert-link">Давай сделаем первую книгу</a>
             </div>
         {% endif %}
     </div>
