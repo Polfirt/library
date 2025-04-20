@@ -1,20 +1,27 @@
+<!-- Наследование основного шаблона -->
 {% extends "library/base.html" %}
 
+<!-- Заголовок страницы -->
 {% block content %}
     <h1>Все книги</h1>
 
+    <!-- Форма фильтрации по автору -->
     <form method="GET" style="margin-bottom:20px;">
         <input type="text" name="author" placeholder="Поиск по автору" value="{{ author_filter }}">
         <button type="submit">Найти</button>
         <a href="{% url 'book_list' %}">Сбросить</a>
     </form>
 
+    <!-- Контейнер с книгами -->
     <div class="book-list">
         {% for book in books %}
             <div class="book">
+                <!-- Обложка книги -->
                 <img src="{{ book.cover.url }}" class="book-cover" alt="{{ book.title }}">
+                <!-- Информация о книге -->
                 <h3>{{ book.title }}</h3>
                 <p>Автор: {{ book.author }}</p>
+                <!-- Ссылка на детальную страницу -->
                 <a href="{% url 'book_detail' book.pk %}">Подробнее</a>
             </div>
         {% endfor %}
