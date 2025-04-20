@@ -6,15 +6,15 @@
     <div class="col-md-6">
         <div class="card shadow">
             <div class="card-body">
-                <h2 class="card-title text-center mb-4">Register</h2>
+                <h2 class="card-title text-center mb-4">Зарегаться</h2>
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
                     <div class="d-grid gap-2 mt-4">
-                        <button class="btn btn-primary" type="submit">Sign Up</button>
+                        <button class="btn btn-primary" type="submit">Зарегаться</button>
                         <div class="text-center mt-3">
                             <small class="text-muted">
-                                Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Login</a>
+                                Че, акк уже есть? <a href="{% url 'login' %}" class="text-decoration-none">Логин</a>
                             </small>
                         </div>
                     </div>
