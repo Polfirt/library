@@ -1,0 +1,22 @@
+{% extends "library/base.html" %}
+
+{% block content %}
+    <h1>Все книги</h1>
+
+    <form method="GET" style="margin-bottom:20px;">
+        <input type="text" name="author" placeholder="Поиск по автору" value="{{ author_filter }}">
+        <button type="submit">Найти</button>
+        <a href="{% url 'book_list' %}">Сбросить</a>
+    </form>
+
+    <div class="book-list">
+        {% for book in books %}
+            <div class="book">
+                <img src="{{ book.cover.url }}" class="book-cover" alt="{{ book.title }}">
+                <h3>{{ book.title }}</h3>
+                <p>Автор: {{ book.author }}</p>
+                <a href="{% url 'book_detail' book.pk %}">Подробнее</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

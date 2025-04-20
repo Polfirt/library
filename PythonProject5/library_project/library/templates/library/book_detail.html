@@ -1,0 +1,19 @@
+{% extends "library/base.html" %}
+
+{% block content %}
+    <div class="book-detail">
+        <img src="{{ book.cover.url }}" style="max-width: 300px; margin-bottom: 20px;">
+        <h1>{{ book.title }}</h1>
+        <p><strong>Автор:</strong> {{ book.author }}</p>
+        <p><strong>Дата публикации:</strong> {{ book.publication_date|date:"Y" }}</p>
+        <p><strong>Описание:</strong></p>
+        <p>{{ book.description }}</p>
+
+        {% if user == book.user %}
+            <div style="margin-top:20px;">
+                <a href="{% url 'edit_book' book.pk %}">Редактировать</a>
+                <a href="{% url 'delete_book' book.pk %}" style="color:red; margin-left:15px;">Удалить</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

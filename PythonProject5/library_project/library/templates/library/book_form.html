@@ -1,0 +1,33 @@
+{% extends "library/base.html" %}
+
+{% block content %}
+    <h2>{% if form.instance.pk %}Редактировать книгу{% else %}Добавить новую книгу{% endif %}</h2>
+
+    <form method="post" enctype="multipart/form-data" style="max-width:500px;">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.title.label_tag }}
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            {{ form.author.label_tag }}
+            {{ form.author }}
+        </div>
+        <div class="form-group">
+            {{ form.description.label_tag }}
+            {{ form.description }}
+        </div>
+        <div class="form-group">
+            {{ form.publication_date.label_tag }}
+            {{ form.publication_date }}
+        </div>
+        <div class="form-group">
+            {{ form.cover.label_tag }}
+            {{ form.cover }}
+        </div>
+        <button type="submit">Сохранить</button>
+        <a href="{% if form.instance.pk %}{% url 'book_detail' form.instance.pk %}{% else %}{% url 'book_list' %}{% endif %}" style="margin-left:10px;">
+            Отмена
+        </a>
+    </form>
+{% endblock %}

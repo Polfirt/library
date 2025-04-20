@@ -1,0 +1,37 @@
+{% extends "library/base.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h2 class="mb-4">My Books</h2>
+        {% if books %}
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for book in books %}
+                    <div class="col">
+                        <div class="card h-100 book-card shadow-sm">
+                            <img src="{{ book.cover.url }}" class="card-img-top book-cover" alt="{{ book.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ book.title }}</h5>
+                                <p class="card-text text-muted">{{ book.author }}</p>
+                            </div>
+                            <div class="card-footer bg-white">
+                                <div class="d-grid gap-2 d-md-block">
+                                    <a href="{% url 'book_detail' book.pk %}" class="btn btn-sm btn-outline-primary">View</a>
+                                    <a href="{% url 'edit_book' book.pk %}" class="btn btn-sm btn-outline-success">Edit</a>
+                                    <a href="{% url 'delete_book' book.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                You haven't added any books yet. <a href="{% url 'add_book' %}" class="alert-link">Add your first book</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
