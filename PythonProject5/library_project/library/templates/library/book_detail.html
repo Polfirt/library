@@ -2,13 +2,17 @@
 
 {% block content %}
     <div class="book-detail">
+        <!-- Обложка книги -->
         <img src="{{ book.cover.url }}" style="max-width: 300px; margin-bottom: 20px;">
+        <!-- Основная информация -->
         <h1>{{ book.title }}</h1>
         <p><strong>Автор:</strong> {{ book.author }}</p>
         <p><strong>Дата публикации:</strong> {{ book.publication_date|date:"Y" }}</p>
+        <!-- Описание книги -->
         <p><strong>Описание:</strong></p>
         <p>{{ book.description }}</p>
 
+        <!-- Кнопки управления для владельца -->
         {% if user == book.user %}
             <div style="margin-top:20px;">
                 <a href="{% url 'edit_book' book.pk %}">Редактировать</a>
