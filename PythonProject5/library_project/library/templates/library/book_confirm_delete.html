@@ -8,12 +8,12 @@
         <div class="card shadow">
             <div class="card-body">
                 <h2 class="card-title mb-4">Delete Book</h2>
-                <p class="lead">Are you sure you want to delete "{{ book.title }}"?</p>
+                <p class="lead">Уверен? "{{ book.title }}"?</p>
                 <form method="POST">
                     {% csrf_token %}
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="submit" class="btn btn-danger">Yes, Delete</button>
-                        <a href="{% url 'book_detail' book.pk %}" class="btn btn-outline-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-danger">Да, хочу</button>
+                        <a href="{% url 'book_detail' book.pk %}" class="btn btn-outline-secondary">Отмена</a>
                     </div>
                 </form>
             </div>
