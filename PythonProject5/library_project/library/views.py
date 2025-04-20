@@ -6,6 +6,7 @@ from .forms import CustomUserCreationForm, BookForm
 
 
 def register(request):
+    # Обработка регистрации пользователей
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -17,13 +18,15 @@ def register(request):
     return render(request, 'library/register.html', {'form': form})
 
 
-@login_required
+@login_required # Требует авторизации
 def profile(request):
+    # Показ профиля пользователя с его книгами
     books = Book.objects.filter(user=request.user).order_by('-created_at')
     return render(request, 'library/profile.html', {'books': books})
 
 
 def book_list(request):
+    # Список всех книг с фильтрацией по автору
     books = Book.objects.all().order_by('-created_at')
     author_filter = request.GET.get('author')
 
@@ -37,12 +40,14 @@ def book_list(request):
 
 
 def book_detail(request, pk):
+    # Детальная страница книги
     book = get_object_or_404(Book, pk=pk)
     return render(request, 'library/book_detail.html', {'book': book})
 
 
 @login_required
 def add_book(request):
+    # Добавление новой книги
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
@@ -58,6 +63,7 @@ def add_book(request):
 
 @login_required
 def edit_book(request, pk):
+    # Редактирование существующей книги
     book = get_object_or_404(Book, pk=pk, user=request.user)
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES, instance=book)
@@ -72,6 +78,7 @@ def edit_book(request, pk):
 
 @login_required
 def delete_book(request, pk):
+    # Удаление книги
     book = get_object_or_404(Book, pk=pk, user=request.user)
     if request.method == 'POST':
         book.delete()
